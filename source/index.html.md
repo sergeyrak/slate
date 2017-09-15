@@ -10,6 +10,7 @@ toc_footers:
 includes:
   - intro
   - create_console
+  - create_campaign
 
 search: true
 ---

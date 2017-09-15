@@ -326,7 +326,7 @@
 </tbody></table>
 
 <aside class="notice">
-Response's path is built like: <b>responses path</b>/<b>console_id</b>/<b>request's wait_for_response_at</b>
+Response's path is built like: <b>responses path</b>/<b>console_id</b>/<b>request's wait_for_response_at</b>, exception is the console creation request.
 </aside>
 <h2 id='endpoints'>Endpoints</h2>
 <table><thead>
@@ -345,9 +345,21 @@ Response's path is built like: <b>responses path</b>/<b>console_id</b>/<b>reques
 </tr>
 </tbody></table>
 <h1 id='api-endpoints'>API Endpoints</h1><h2 id='create-console'>Create Console</h2>
+<blockquote>
+<p>Example of console creation request:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="nl">type</span><span class="p">:</span> <span class="s1">'create_console'</span><span class="p">,</span>
+    <span class="nx">bundle</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nl">name</span><span class="p">:</span> <span class="s1">'My Console'</span><span class="p">,</span>
+        <span class="nx">vendor</span><span class="p">:</span> <span class="s1">'rosso'</span><span class="p">,</span>
+        <span class="nx">uid</span><span class="p">:</span> <span class="s1">'ajj234k091234ajlqrlerhj'</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
 <p>Creates a new console and links it with registered user if user ID is provided.</p>
 
-<p><strong>Request&#39;s bundle parameters:</strong></p>
+<p><strong>Request parameters</strong></p>
 
 <table><thead>
 <tr>
@@ -357,19 +369,93 @@ Response's path is built like: <b>responses path</b>/<b>console_id</b>/<b>reques
 </tr>
 </thead><tbody>
 <tr>
-<td>name</td>
+<td>type</td>
+<td>YES</td>
+<td><code>&#39;create_console&#39;</code></td>
+</tr>
+<tr>
+<td>bundle.name</td>
 <td>YES</td>
 <td>console name</td>
 </tr>
 <tr>
-<td>uid</td>
-<td>NO</td>
+<td>bundle.uid</td>
+<td>YES</td>
 <td>user ID which must be linked with new console</td>
 </tr>
 <tr>
-<td>vendor</td>
+<td>bundle.vendor</td>
 <td>NO</td>
 <td>vendor name</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example of console creation response:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="nl">request_id</span><span class="p">:</span> <span class="s1">'-LJKd08jkad'</span><span class="p">,</span>
+    <span class="nx">console_id</span><span class="p">:</span> <span class="s1">'-Bjasf8234l'</span>
+<span class="p">}</span>
+</code></pre>
+<p><strong>Response parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>console_id</td>
+<td>created console ID</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example of modified endpoints after processed console creation request:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">consoles</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s1">'-Bjasf8234l'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nl">name</span><span class="p">:</span> <span class="s1">'My Console'</span><span class="p">,</span>
+        <span class="nx">console_id</span><span class="p">:</span> <span class="s1">'-Bjasf8234l'</span><span class="p">,</span>
+        <span class="nx">console_creation_date</span><span class="p">:</span> <span class="mi">1505480785652</span><span class="p">,</span>
+        <span class="nx">vendor</span><span class="p">:</span> <span class="s1">'rosso'</span><span class="p">,</span>
+        <span class="nx">payment</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nl">balance</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nl">cad</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nl">cents</span><span class="p">:</span> <span class="mi">0</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">},</span>
+<span class="nx">users</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s1">'ajj234k091234ajlqrlerhj'</span><span class="p">:</span> <span class="s1">'-Bjasf8234l'</span>
+<span class="p">},</span>
+<span class="nx">consoles_by_vendor</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s1">'rosso'</span><span class="p">:</span> <span class="s1">'-Bjasf8234l'</span>
+<span class="p">}</span>
+</code></pre>
+<p><strong>Modified endpoints</strong></p>
+
+<table><thead>
+<tr>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>/consoles</code></td>
+<td>adds a new console instance</td>
+</tr>
+<tr>
+<td><code>/users</code></td>
+<td>creates mapping for console by user ID</td>
+</tr>
+<tr>
+<td><code>/consoles_by_vendor</code></td>
+<td>creates mapping for console by vendor name if it was provided</td>
 </tr>
 </tbody></table>
 

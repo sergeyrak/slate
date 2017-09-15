@@ -238,6 +238,9 @@
                   <li>
                     <a href="#create-console" class="toc-h2 toc-link" data-title="API Endpoints">Create Console</a>
                   </li>
+                  <li>
+                    <a href="#create-campaign" class="toc-h2 toc-link" data-title="API Endpoints">Create Campaign</a>
+                  </li>
               </ul>
           </li>
       </div>
@@ -456,6 +459,106 @@ Response's path is built like: <b>responses path</b>/<b>console_id</b>/<b>reques
 <tr>
 <td><code>/consoles_by_vendor</code></td>
 <td>creates mapping for console by vendor name if it was provided</td>
+</tr>
+</tbody></table>
+<h2 id='create-campaign'>Create Campaign</h2>
+<blockquote>
+<p>Example of campaign creation request:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="nl">type</span><span class="p">:</span> <span class="s1">'create_campaign'</span><span class="p">,</span>
+    <span class="nx">console_id</span><span class="p">:</span> <span class="s1">'-Bjasf8234l'</span><span class="p">,</span>
+    <span class="nx">bundle</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nl">name</span><span class="p">:</span> <span class="s1">'My Campaign'</span><span class="p">,</span>
+        <span class="nx">type</span><span class="p">:</span> <span class="s1">'email'</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>Creates a new active campaign for console.</p>
+
+<p><strong>Request parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>YES</td>
+<td><code>&#39;create_campaign&#39;</code></td>
+</tr>
+<tr>
+<td>bundle.name</td>
+<td>YES</td>
+<td>campaign name</td>
+</tr>
+<tr>
+<td>bundle.type</td>
+<td>YES</td>
+<td>campaign type: <code>&#39;email&#39;</code> or <code>&#39;phone&#39;</code></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example of console creation response:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="nl">request_id</span><span class="p">:</span> <span class="s1">'-HU48fja9Hd'</span><span class="p">,</span>
+    <span class="nx">campaign_id</span><span class="p">:</span> <span class="s1">'-Kha84laiFaj'</span>
+<span class="p">}</span>
+</code></pre>
+<p><strong>Response parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>campaign_id</td>
+<td>created campaign ID</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example of modified endpoints after processed campaign creation request:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">campaigns</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s1">'-Kha84laiFaj'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nl">name</span><span class="p">:</span> <span class="s1">'My Campaign'</span><span class="p">,</span>
+        <span class="nx">type</span><span class="p">:</span> <span class="s1">'email'</span><span class="p">,</span>
+        <span class="nx">console_id</span><span class="p">:</span> <span class="s1">'-Bjasf8234l'</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">},</span>
+<span class="nx">consoles</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s1">'-Bjasf8234l'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nl">campaigns</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">'-Kha84laiFaj'</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nl">active</span><span class="p">:</span> <span class="kc">true</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p><strong>Modified endpoints</strong></p>
+
+<table><thead>
+<tr>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>/campaigns</code></td>
+<td>adds a new campaign instance</td>
+</tr>
+<tr>
+<td><code>/consoles/[console_id]/campaigns</code></td>
+<td>adds reference for created campaign</td>
 </tr>
 </tbody></table>
 

@@ -23,7 +23,7 @@ type | YES | `'create_campaign'`
 bundle.name | YES | campaign name
 bundle.type | YES | campaign type: `'email'` or `'phone'`
 
-> Example of console creation response:
+> Example of campaign creation response:
 
 ```javascript
 {

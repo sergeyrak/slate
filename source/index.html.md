@@ -11,6 +11,10 @@ includes:
   - intro
   - create_console
   - create_campaign
+  - create_campaign_auth_code
+  - delete_campaign_auth_code
+  - add_campaign_user
+  - delete_campaign_user
 
 search: true
 ---

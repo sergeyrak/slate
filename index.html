@@ -241,6 +241,18 @@
                   <li>
                     <a href="#create-campaign" class="toc-h2 toc-link" data-title="API Endpoints">Create Campaign</a>
                   </li>
+                  <li>
+                    <a href="#create-campaign-auth-code" class="toc-h2 toc-link" data-title="API Endpoints">Create Campaign Auth Code</a>
+                  </li>
+                  <li>
+                    <a href="#delete-campaign-auth-code" class="toc-h2 toc-link" data-title="API Endpoints">Delete Campaign Auth Code</a>
+                  </li>
+                  <li>
+                    <a href="#add-campaign-user" class="toc-h2 toc-link" data-title="API Endpoints">Add Campaign User</a>
+                  </li>
+                  <li>
+                    <a href="#delete-campaign-user" class="toc-h2 toc-link" data-title="API Endpoints">Delete Campaign User</a>
+                  </li>
               </ul>
           </li>
       </div>
@@ -503,7 +515,7 @@ Response's path is built like: <b>responses path</b>/<b>console_id</b>/<b>reques
 </tbody></table>
 
 <blockquote>
-<p>Example of console creation response:</p>
+<p>Example of campaign creation response:</p>
 </blockquote>
 <pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
     <span class="nl">request_id</span><span class="p">:</span> <span class="s1">'-HU48fja9Hd'</span><span class="p">,</span>
@@ -559,6 +571,379 @@ Response's path is built like: <b>responses path</b>/<b>console_id</b>/<b>reques
 <tr>
 <td><code>/consoles/[console_id]/campaigns</code></td>
 <td>adds reference for created campaign</td>
+</tr>
+</tbody></table>
+<h2 id='create-campaign-auth-code'>Create Campaign Auth Code</h2>
+<blockquote>
+<p>Example of campaign&#39;s auth code creation request:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="nl">type</span><span class="p">:</span> <span class="s1">'create_campaign_auth_code'</span><span class="p">,</span>
+    <span class="nx">console_id</span><span class="p">:</span> <span class="s1">'-Bjasf8234l'</span><span class="p">,</span>
+    <span class="nx">bundle</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nl">campaign_id</span><span class="p">:</span> <span class="s1">'-Kha84laiFaj'</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>Creates a new auth code for existing console&#39;s campaign.</p>
+
+<p><strong>Request parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>YES</td>
+<td><code>&#39;create_campaign_auth_code&#39;</code></td>
+</tr>
+<tr>
+<td>bundle.campaign_id</td>
+<td>YES</td>
+<td>campaign ID</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example of response for creation campaign&#39;s new auth code:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="nl">request_id</span><span class="p">:</span> <span class="s1">'-HU48fja9Hd'</span><span class="p">,</span>
+    <span class="nx">auth_code</span><span class="p">:</span> <span class="s1">'5ae5bf46-2a47-477d-973e-a5dacda42f1c'</span>
+<span class="p">}</span>
+</code></pre>
+<p><strong>Response parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>auth_code</td>
+<td>created auth code</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example of modified endpoints after processed campaign&#39;s auth code creation request:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">campaigns</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s1">'-Kha84laiFaj'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nl">auth_codes</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">'5ae5bf46-2a47-477d-973e-a5dacda42f1c'</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nl">active</span><span class="p">:</span> <span class="kc">true</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p><strong>Modified endpoints</strong></p>
+
+<table><thead>
+<tr>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>/campaigns/[campaign_id]/auth_codes</code></td>
+<td>adds a new auth code to campaign instance</td>
+</tr>
+</tbody></table>
+<h2 id='delete-campaign-auth-code'>Delete Campaign Auth Code</h2>
+<blockquote>
+<p>Example of request for deleting campaign&#39;s auth code:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="nl">type</span><span class="p">:</span> <span class="s1">'delete_campaign_auth_code'</span><span class="p">,</span>
+    <span class="nx">console_id</span><span class="p">:</span> <span class="s1">'-Bjasf8234l'</span><span class="p">,</span>
+    <span class="nx">bundle</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nl">campaign_id</span><span class="p">:</span> <span class="s1">'-Kha84laiFaj'</span><span class="p">,</span>
+        <span class="nx">auth_code</span><span class="p">:</span> <span class="s1">'5ae5bf46-2a47-477d-973e-a5dacda42f1c'</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>Deletes an existing campaign&#39;s auth code. If auth code is associated with user, it will be removed from campaign as well.</p>
+
+<p><strong>Request parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>YES</td>
+<td><code>&#39;delete_campaign_auth_code&#39;</code></td>
+</tr>
+<tr>
+<td>bundle.campaign_id</td>
+<td>YES</td>
+<td>campaign ID</td>
+</tr>
+<tr>
+<td>bundle.auth_code</td>
+<td>YES</td>
+<td>auth code</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example of response after deleting campaigns&#39;s auth code:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="nl">request_id</span><span class="p">:</span> <span class="s1">'-N8padslq03'</span><span class="p">,</span>
+    <span class="nx">status</span><span class="p">:</span> <span class="s1">'success'</span>
+<span class="p">}</span>
+</code></pre>
+<p><strong>Response parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>operation status: if it was successfull - <code>&#39;success&#39;</code>, otherwise  - <code>&#39;failure&#39;</code></td>
+</tr>
+</tbody></table>
+
+<p><strong>Modified endpoints</strong></p>
+
+<table><thead>
+<tr>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>/campaigns/[campaign_id]/auth_codes</code></td>
+<td>deletes auth code from campaign instance</td>
+</tr>
+</tbody></table>
+<h2 id='add-campaign-user'>Add Campaign User</h2>
+<blockquote>
+<p>Example of request for adding user (phone) to campaign:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="nl">type</span><span class="p">:</span> <span class="s1">'add_campaign_user'</span><span class="p">,</span>
+    <span class="nx">console_id</span><span class="p">:</span> <span class="s1">'-Bjasf8234l'</span><span class="p">,</span>
+    <span class="nx">bundle</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nl">campaign_id</span><span class="p">:</span> <span class="s1">'-Kha84laiFaj'</span><span class="p">,</span>
+        <span class="nx">auth_code</span><span class="p">:</span> <span class="s1">'beb0eee9-9ece-4422-a423-bb8f3bc5ba7c'</span><span class="p">,</span>
+        <span class="nx">user_id</span><span class="p">:</span> <span class="s1">'+111222333444'</span><span class="p">,</span>
+        <span class="nx">user_type</span><span class="p">:</span> <span class="s1">'phone'</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>Adds a new user to console&#39;s campaign. User can be email address or phone number.
+Phone numbers require a free auth code to be provided.
+If user is already assigned to another campaign, his access to that campaign is revoked and he will be accosiated with new one.</p>
+
+<p><strong>Request parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>YES</td>
+<td><code>&#39;add_campaign_user&#39;</code></td>
+</tr>
+<tr>
+<td>bundle.campaign_id</td>
+<td>YES</td>
+<td>campaign ID</td>
+</tr>
+<tr>
+<td>bundle.auth_code</td>
+<td>YES</td>
+<td>auth code which is required only for <code>&#39;phone&#39;</code> user</td>
+</tr>
+<tr>
+<td>bundle.user_id</td>
+<td>YES</td>
+<td>phone number or email address</td>
+</tr>
+<tr>
+<td>bundle.user_type</td>
+<td>YES</td>
+<td>user&#39;s type: <code>&#39;email&#39;</code> or <code>&#39;phone&#39;</code></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example of successfull response after adding a phone to campaign:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="nl">request_id</span><span class="p">:</span> <span class="s1">'-Ykjha7834ja'</span><span class="p">,</span>
+    <span class="nx">status</span><span class="p">:</span> <span class="s1">'success'</span>
+<span class="p">}</span>
+</code></pre>
+<p><strong>Response parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>operation status: if it was successfull - <code>&#39;success&#39;</code>, otherwise  - <code>&#39;failure&#39;</code></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example of modified endpoints after processed request:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">campaigns</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s1">'-Kha84laiFaj'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nl">auth_codes</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">'beb0eee9-9ece-4422-a423-bb8f3bc5ba7c'</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nl">active</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="nx">user</span><span class="p">:</span> <span class="s1">'+111222333444'</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="nx">phones</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">'+111222333444'</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nl">code</span><span class="p">:</span> <span class="s1">'beb0eee9-9ece-4422-a423-bb8f3bc5ba7c'</span><span class="p">,</span>
+                <span class="nx">active</span><span class="p">:</span> <span class="kc">true</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">},</span>
+<span class="nx">consoles_users</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s1">'+111222333444'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nl">type</span><span class="p">:</span> <span class="s1">'phone'</span><span class="p">,</span>
+        <span class="nx">consoles</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">'-Bjasf8234l'</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nl">campaigns</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s1">'-Kha84laiFaj'</span><span class="p">:</span> <span class="s1">'beb0eee9-9ece-4422-a423-bb8f3bc5ba7c'</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p><strong>Modified endpoints</strong></p>
+
+<table><thead>
+<tr>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>/campaigns/[campaign_id]/[user_type]</code></td>
+<td>creates a reference to user</td>
+</tr>
+<tr>
+<td><code>/campaigns/auth_codes/[code]</code></td>
+<td>adds a reference to user for used auth code</td>
+</tr>
+<tr>
+<td><code>/consoles_users/[user_id]</code></td>
+<td>adds a new user information</td>
+</tr>
+</tbody></table>
+<h2 id='delete-campaign-user'>Delete Campaign User</h2>
+<blockquote>
+<p>Example of request for deleting user from campaign:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="nl">type</span><span class="p">:</span> <span class="s1">'delete_campaign_user'</span><span class="p">,</span>
+    <span class="nx">console_id</span><span class="p">:</span> <span class="s1">'-Bjasf8234l'</span><span class="p">,</span>
+    <span class="nx">bundle</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nl">campaign_id</span><span class="p">:</span> <span class="s1">'-Kha84laiFaj'</span><span class="p">,</span>
+        <span class="nx">user_id</span><span class="p">:</span> <span class="s1">'+111222333444'</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>Deletes an existing user from console&#39;s campaign.</p>
+
+<p><strong>Request parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>YES</td>
+<td><code>&#39;delete_campaign_user&#39;</code></td>
+</tr>
+<tr>
+<td>bundle.campaign_id</td>
+<td>YES</td>
+<td>campaign ID</td>
+</tr>
+<tr>
+<td>bundle.user_id</td>
+<td>YES</td>
+<td>phone number or email address</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example of successfull response after deleting a user from campaign:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="nl">request_id</span><span class="p">:</span> <span class="s1">'-KW7k2bm292as'</span><span class="p">,</span>
+    <span class="nx">status</span><span class="p">:</span> <span class="s1">'success'</span>
+<span class="p">}</span>
+</code></pre>
+<p><strong>Response parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>operation status: if it was successfull - <code>&#39;success&#39;</code>, otherwise  - <code>&#39;failure&#39;</code></td>
+</tr>
+</tbody></table>
+
+<p><strong>Modified endpoints</strong></p>
+
+<table><thead>
+<tr>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>/campaigns/[campaign_id]/[user_type]</code></td>
+<td>deletes a user reference from campaign</td>
+</tr>
+<tr>
+<td><code>/campaigns/auth_codes/[code]</code></td>
+<td>frees associated auth code in case of phone number</td>
+</tr>
+<tr>
+<td><code>/consoles_users/[user_id]</code></td>
+<td>deletes user instance</td>
 </tr>
 </tbody></table>
 

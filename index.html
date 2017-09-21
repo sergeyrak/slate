@@ -486,7 +486,9 @@ Response's path is built like: <b>responses path</b>/<b>console_id</b>/<b>reques
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
-<p>Creates a new active campaign for console.</p>
+<p>Creates a new active campaign for console. </p>
+
+<p>Each console has a virtual <em>public campaign</em> to group the users which don’t belong to any of console’s campaigns. Public campaign has ID in the next format: <code>[console_id]_public</code>.</p>
 
 <p><strong>Request parameters</strong></p>
 

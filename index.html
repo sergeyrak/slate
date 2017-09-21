@@ -256,6 +256,9 @@
                   <li>
                     <a href="#set-campaign-offer" class="toc-h2 toc-link" data-title="API Endpoints">Set Campaign Offer</a>
                   </li>
+                  <li>
+                    <a href="#create-agreement" class="toc-h2 toc-link" data-title="API Endpoints">Create Agreement</a>
+                  </li>
               </ul>
           </li>
       </div>
@@ -1037,6 +1040,102 @@ If user is already assigned to another campaign, his access to that campaign is 
 <tr>
 <td><code>/campaigns/[campaign_id]/offer</code></td>
 <td>sets campaign&#39;s default offer details</td>
+</tr>
+</tbody></table>
+<h2 id='create-agreement'>Create Agreement</h2>
+<blockquote>
+<p>Example of agreement creation request:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="nl">type</span><span class="p">:</span> <span class="s1">'create_agreement'</span><span class="p">,</span>
+    <span class="nx">console_id</span><span class="p">:</span> <span class="s1">'-Bjasf8234l'</span><span class="p">,</span>
+    <span class="nx">bundle</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nl">name</span><span class="p">:</span> <span class="s1">'My Agreement'</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>Creates a new active agreement for console. </p>
+
+<p>Each console has a virtual <em>public agreement</em> to for users which don’t belong to any other console’s agreements. Public agreement has ID in  format: <code>[console_id]_public</code>.</p>
+
+<p><strong>Request parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>YES</td>
+<td><code>&#39;create_agreement&#39;</code></td>
+</tr>
+<tr>
+<td>bundle.name</td>
+<td>YES</td>
+<td>agreement name</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example of agreeement creation response:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="nl">request_id</span><span class="p">:</span> <span class="s1">'-HU48fja9Hd'</span><span class="p">,</span>
+    <span class="nx">agreement_id</span><span class="p">:</span> <span class="s1">'-KuYrIw65D3'</span>
+<span class="p">}</span>
+</code></pre>
+<p><strong>Response parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>agreement_id</td>
+<td>created agreement ID</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example of modified endpoints after processed agreement creation request:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">agreements</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s1">'-KuYrIw65D3'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nl">name</span><span class="p">:</span> <span class="s1">'My Agreement'</span><span class="p">,</span>
+        <span class="nx">console_id</span><span class="p">:</span> <span class="s1">'-Bjasf8234l'</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">},</span>
+<span class="nx">consoles</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s1">'-Bjasf8234l'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nl">agreements</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">'-KuYrIw65D3'</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nl">active</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="nx">owner</span><span class="p">:</span> <span class="s1">'-Bjasf8234l'</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p><strong>Modified endpoints</strong></p>
+
+<table><thead>
+<tr>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>/agreements</code></td>
+<td>adds a new agreement instance</td>
+</tr>
+<tr>
+<td><code>/consoles/[console_id]/agreements</code></td>
+<td>adds reference for created agreement</td>
 </tr>
 </tbody></table>
 

@@ -253,6 +253,9 @@
                   <li>
                     <a href="#delete-campaign-user" class="toc-h2 toc-link" data-title="API Endpoints">Delete Campaign User</a>
                   </li>
+                  <li>
+                    <a href="#set-campaign-offer" class="toc-h2 toc-link" data-title="API Endpoints">Set Campaign Offer</a>
+                  </li>
               </ul>
           </li>
       </div>
@@ -946,6 +949,94 @@ If user is already assigned to another campaign, his access to that campaign is 
 <tr>
 <td><code>/consoles_users/[user_id]</code></td>
 <td>deletes user instance</td>
+</tr>
+</tbody></table>
+<h2 id='set-campaign-offer'>Set Campaign Offer</h2>
+<blockquote>
+<p>Example of request to set a default campaign&#39;s offer:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="nl">type</span><span class="p">:</span> <span class="s1">'set_campaign_offer'</span><span class="p">,</span>
+    <span class="nx">console_id</span><span class="p">:</span> <span class="s1">'-Bjasf8234l'</span><span class="p">,</span>
+    <span class="nx">bundle</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nl">campaign_id</span><span class="p">:</span> <span class="s1">'-Kha84laiFaj'</span><span class="p">,</span>
+        <span class="nx">offer</span><span class="p">:</span> <span class="s1">'ollia_offer_tea'</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>Sets a default campaign&#39;s offer.</p>
+
+<p><strong>Request parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>YES</td>
+<td><code>&#39;set_campaign_offer&#39;</code></td>
+</tr>
+<tr>
+<td>bundle.campaign_id</td>
+<td>YES</td>
+<td>campaign ID</td>
+</tr>
+<tr>
+<td>bundle.offer</td>
+<td>YES</td>
+<td>offer ID</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example of response after campaign&#39;s offer has been set:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="nl">request_id</span><span class="p">:</span> <span class="s1">'-Y7Jla4a90U'</span><span class="p">,</span>
+    <span class="nx">status</span><span class="p">:</span> <span class="s1">'success'</span>
+<span class="p">}</span>
+</code></pre>
+<p><strong>Response parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>operation status: if it was successfull - <code>&#39;success&#39;</code>, otherwise  - <code>&#39;failure&#39;</code></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example of modified endpoints after processed request:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">campaigns</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s1">'-Kha84laiFaj'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nl">offer</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nl">id</span><span class="p">:</span> <span class="s1">'ollia_offer_tea'</span><span class="p">,</span>
+            <span class="nx">vendor</span><span class="p">:</span> <span class="s1">'ollia'</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p><strong>Modified endpoints</strong></p>
+
+<table><thead>
+<tr>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>/campaigns/[campaign_id]/offer</code></td>
+<td>sets campaign&#39;s default offer details</td>
 </tr>
 </tbody></table>
 

@@ -13,7 +13,9 @@
 }
 ```
 
-Creates a new active campaign for console.
+Creates a new active campaign for console. 
+
+Each console has a virtual *public campaign* to group the users which don’t belong to any of console’s campaigns. Public campaign has ID in the next format: `[console_id]_public`.
 
 **Request parameters**
 

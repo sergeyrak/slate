@@ -15,6 +15,7 @@ includes:
   - delete_campaign_auth_code
   - add_campaign_user
   - delete_campaign_user
+  - set_campaign_offer
 
 search: true
 ---

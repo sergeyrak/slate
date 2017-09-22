@@ -259,6 +259,15 @@
                   <li>
                     <a href="#create-agreement" class="toc-h2 toc-link" data-title="API Endpoints">Create Agreement</a>
                   </li>
+                  <li>
+                    <a href="#create-agreement-auth-code" class="toc-h2 toc-link" data-title="API Endpoints">Create Agreement Auth Code</a>
+                  </li>
+                  <li>
+                    <a href="#delete-agreement-auth-code" class="toc-h2 toc-link" data-title="API Endpoints">Delete Agreement Auth Code</a>
+                  </li>
+                  <li>
+                    <a href="#assign-agreement" class="toc-h2 toc-link" data-title="API Endpoints">Assign Agreement</a>
+                  </li>
               </ul>
           </li>
       </div>
@@ -617,7 +626,7 @@ Response's path is built like: <b>responses path</b>/<b>console_id</b>/<b>reques
 </tbody></table>
 
 <blockquote>
-<p>Example of response for creation campaign&#39;s new auth code:</p>
+<p>Example of response for creation campaign&#39;s auth code:</p>
 </blockquote>
 <pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
     <span class="nl">request_id</span><span class="p">:</span> <span class="s1">'-HU48fja9Hd'</span><span class="p">,</span>
@@ -1136,6 +1145,289 @@ If user is already assigned to another campaign, his access to that campaign is 
 <tr>
 <td><code>/consoles/[console_id]/agreements</code></td>
 <td>adds reference for created agreement</td>
+</tr>
+</tbody></table>
+<h2 id='create-agreement-auth-code'>Create Agreement Auth Code</h2>
+<blockquote>
+<p>Example of agreement&#39;s auth code creation request:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="nl">type</span><span class="p">:</span> <span class="s1">'create_agreement_auth_code'</span><span class="p">,</span>
+    <span class="nx">console_id</span><span class="p">:</span> <span class="s1">'-Bjasf8234l'</span><span class="p">,</span>
+    <span class="nx">bundle</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nl">agreement_id</span><span class="p">:</span> <span class="s1">'-KuYrIw65D3'</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>Creates a new auth code for existing console&#39;s agreement.</p>
+
+<p><strong>Request parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>YES</td>
+<td><code>&#39;create_agreement_auth_code&#39;</code></td>
+</tr>
+<tr>
+<td>bundle.agreement_id</td>
+<td>YES</td>
+<td>agreement ID</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example of response for creation agreement&#39;s auth code:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="nl">request_id</span><span class="p">:</span> <span class="s1">'-Jhr7u32lk'</span><span class="p">,</span>
+    <span class="nx">auth_code</span><span class="p">:</span> <span class="s1">'73376d6a-e457-4a66-b06a-c16a637cfa4b'</span>
+<span class="p">}</span>
+</code></pre>
+<p><strong>Response parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>auth_code</td>
+<td>created auth code</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example of modified endpoints after processed agreement&#39;s auth code creation request:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">agreements</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s1">'-KuYrIw65D3'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nl">auth_codes</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">'73376d6a-e457-4a66-b06a-c16a637cfa4b'</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nl">active</span><span class="p">:</span> <span class="kc">true</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p><strong>Modified endpoints</strong></p>
+
+<table><thead>
+<tr>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>/agreements/[agreement_id]/auth_codes</code></td>
+<td>adds a new auth code to agreement instance</td>
+</tr>
+</tbody></table>
+<h2 id='delete-agreement-auth-code'>Delete Agreement Auth Code</h2>
+<blockquote>
+<p>Example of request for deleting agreement&#39;s auth code:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="nl">type</span><span class="p">:</span> <span class="s1">'delete_agreement_auth_code'</span><span class="p">,</span>
+    <span class="nx">console_id</span><span class="p">:</span> <span class="s1">'-Bjasf8234l'</span><span class="p">,</span>
+    <span class="nx">bundle</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nl">agreement_id</span><span class="p">:</span> <span class="s1">'-KuYrIw65D3'</span><span class="p">,</span>
+        <span class="nx">auth_code</span><span class="p">:</span> <span class="s1">'73376d6a-e457-4a66-b06a-c16a637cfa4b'</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>Deletes an existing agreement&#39;s auth code. If auth code is already assigned to another console, assignment will be dropped as well.</p>
+
+<p><strong>Request parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>YES</td>
+<td><code>&#39;delete_agreement_auth_code&#39;</code></td>
+</tr>
+<tr>
+<td>bundle.agreement_id</td>
+<td>YES</td>
+<td>agreement ID</td>
+</tr>
+<tr>
+<td>bundle.auth_code</td>
+<td>YES</td>
+<td>auth code</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example of response after deleting agreement&#39;s auth code:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="nl">request_id</span><span class="p">:</span> <span class="s1">'-Kl81faklza'</span><span class="p">,</span>
+    <span class="nx">status</span><span class="p">:</span> <span class="s1">'success'</span>
+<span class="p">}</span>
+</code></pre>
+<p><strong>Response parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>operation status: if it was successfull - <code>&#39;success&#39;</code>, otherwise  - <code>&#39;failure&#39;</code></td>
+</tr>
+</tbody></table>
+
+<p><strong>Modified endpoints</strong></p>
+
+<table><thead>
+<tr>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>/agreements/[agreement_id]/auth_codes</code></td>
+<td>deletes auth code from agreement instance</td>
+</tr>
+<tr>
+<td><code>/agreements/[agreement_id]/auth_clients</code></td>
+<td>deletes auth client assigned to auth code</td>
+</tr>
+<tr>
+<td><code>/consoles/[cliend_id]/agreements</code></td>
+<td>deletes reference to assigned agreement</td>
+</tr>
+</tbody></table>
+<h2 id='assign-agreement'>Assign Agreement</h2>
+<blockquote>
+<p>Example of assign agreement request:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="nl">type</span><span class="p">:</span> <span class="s1">'assign_agreement'</span><span class="p">,</span>
+    <span class="nx">console_id</span><span class="p">:</span> <span class="s1">'-Bjasf8234l'</span><span class="p">,</span>
+    <span class="nx">bundle</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nl">agreement_id</span><span class="p">:</span> <span class="s1">'-KuYrIw65D3'</span><span class="p">,</span>
+        <span class="nx">auth_code</span><span class="p">:</span> <span class="s1">'73376d6a-e457-4a66-b06a-c16a637cfa4b'</span><span class="p">,</span>
+        <span class="nx">client_id</span><span class="p">:</span> <span class="s1">'-GcnvMbGIABF'</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>Assigns own agreement to another console using agreement&#39;s auth code.</p>
+
+<p><strong>Request parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>YES</td>
+<td><code>&#39;assign_agreement&#39;</code></td>
+</tr>
+<tr>
+<td>bundle.agreement_id</td>
+<td>YES</td>
+<td>agreement ID</td>
+</tr>
+<tr>
+<td>bundle.auth_code</td>
+<td>YES</td>
+<td>agreement auth code</td>
+</tr>
+<tr>
+<td>bundle.client_id</td>
+<td>YES</td>
+<td>client ID (i.e. console ID) to assign agreement to</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example of response for assigning agreement:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="nl">request_id</span><span class="p">:</span> <span class="s1">'-DK9hO0aiwk'</span><span class="p">,</span>
+    <span class="nx">status</span><span class="p">:</span> <span class="s1">'success'</span>
+<span class="p">}</span>
+</code></pre>
+<p><strong>Response parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>operation status: if it was successfull - <code>&#39;success&#39;</code>, otherwise  - <code>&#39;failure&#39;</code></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example of modified endpoints after processed request:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">agreements</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s1">'-KuYrIw65D3'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nl">auth_codes</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">'73376d6a-e457-4a66-b06a-c16a637cfa4b'</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nl">active</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="nx">client</span><span class="p">:</span> <span class="s1">'-GcnvMbGIABF'</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="nx">auth_clients</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">'-GcnvMbGIABF'</span><span class="p">:</span> <span class="s1">'73376d6a-e457-4a66-b06a-c16a637cfa4b'</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">},</span>
+<span class="nx">consoles</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s1">'-GcnvMbGIABF'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nl">agreements</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">'-KuYrIw65D3'</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nl">active</span><span class="p">:</span> <span class="kc">true</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p><strong>Modified endpoints</strong></p>
+
+<table><thead>
+<tr>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>/agreements/[agreement_id]/auth_codes/[code]</code></td>
+<td>adds a reference to assigned client</td>
+</tr>
+<tr>
+<td><code>/agreements/[agreement_id]/auth_clients</code></td>
+<td>adds a assigned client record</td>
+</tr>
+<tr>
+<td><code>/consoles/[client_id]/agreements/</code></td>
+<td>adds assigned agreement reference</td>
 </tr>
 </tbody></table>
 

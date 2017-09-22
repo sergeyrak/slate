@@ -17,6 +17,9 @@ includes:
   - delete_campaign_user
   - set_campaign_offer
   - create_agreement
+  - create_agreement_auth_code
+  - delete_agreement_auth_code
+  - assign_agreement
 
 search: true
 ---

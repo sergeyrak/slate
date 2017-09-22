@@ -21,7 +21,7 @@ Parameter  | Required | Description
 type | YES | `'create_campaign_auth_code'`
 bundle.campaign_id | YES | campaign ID
 
-> Example of response for creation campaign's new auth code:
+> Example of response for creation campaign's auth code:
 
 ```javascript
 {

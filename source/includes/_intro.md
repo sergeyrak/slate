@@ -51,7 +51,7 @@ request_id | original request ID
 error | means the request processing has failed and contains error description
 
 <aside class="notice">
-Response's path is built like: <b>responses path</b>/<b>console_id</b>/<b>request's wait_for_response_at</b>, exception is the console creation request.
+Response's path is built like: <b>responses path</b>/<b>console_id</b>/<b>request's wait_for_response_at</b>, exception is the console and link creation requests.
 </aside>
 
 ## Endpoints

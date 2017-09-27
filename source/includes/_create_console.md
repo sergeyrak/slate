@@ -1,5 +1,3 @@
-# API Endpoints
-
 ## Create Console
 
 > Example of console creation request:
@@ -25,6 +23,10 @@ type | YES | `'create_console'`
 bundle.name | YES | console name
 bundle.uid | YES | user ID which must be linked with new console
 bundle.vendor | NO | vendor name
+
+<aside class="notice">
+Please notice that this request doesn't require a <b>console_id</b> attribute. That's why response is pushed directly to <b>responses path</b>/<b>request's wait_for_response_at</b>.
+</aside>
 
 > Example of console creation response:
 

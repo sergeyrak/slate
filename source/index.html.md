@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: Gifty Console API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - javascript
@@ -9,7 +9,10 @@ toc_footers:
 
 includes:
   - intro
+  - firebase_api_endpoints
   - create_console
+  - create_console_api_key
+  - delete_console_api_key
   - create_campaign
   - create_campaign_auth_code
   - delete_campaign_auth_code
@@ -20,6 +23,7 @@ includes:
   - create_agreement_auth_code
   - delete_agreement_auth_code
   - assign_agreement
+  - create_link
 
 search: true
 ---

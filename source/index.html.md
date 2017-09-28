@@ -24,6 +24,7 @@ includes:
   - delete_agreement_auth_code
   - assign_agreement
   - create_link
+  - rest_api_endpoints
 
 search: true
 ---

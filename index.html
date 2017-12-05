@@ -1685,9 +1685,26 @@ If console&#39;s balance is lower than offer&#39;s price, first of all, console 
 </tr>
 </tbody></table>
 
-<p><strong>MRGL related parameters</strong>
-bundle.mrgl.recipients_count | YES | max recipients count
-bundle.mrgl.ttl | YES | accept timeout in minutes</p>
+<p><strong>MRGL related parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>bundle.mrgl.recipients_count</td>
+<td>YES</td>
+<td>max recipients count</td>
+</tr>
+<tr>
+<td>bundle.mrgl.ttl</td>
+<td>YES</td>
+<td>accept timeout in minutes</td>
+</tr>
+</tbody></table>
 
 <aside class="notice">
 Please notice that this request doesn't require a <b>console_id</b> attribute. That's why response is pushed directly to <b>responses path</b>/<b>request's wait_for_response_at</b>.

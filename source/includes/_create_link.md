@@ -55,6 +55,9 @@ bundle.user_id | NO | user ID who wants to create a link
 bundle.campaign_id | NO | link must be created for campaign
 
 **MRGL related parameters**
+
+Parameter  | Required | Description
+-----------|----------|------------
 bundle.mrgl.recipients_count | YES | max recipients count
 bundle.mrgl.ttl | YES | accept timeout in minutes
 

@@ -24,6 +24,22 @@
 }
 ```
 
+> Example of MRGL link creation request:
+
+```javascript
+{
+	type: 'create_link',
+	bundle: {
+		client_id: '+1234567890',
+		offer: 'ollia_offer_tea',
+		mrgl: {
+			recipients_count: 3,
+			ttl: 20
+		}
+	}
+}
+```
+
 Creates a link for user or campaign.
 
 Server searches for console related to provided user/campaign and tries to find the best agreement with offer's vendor to make a charge. 
@@ -37,6 +53,10 @@ type | YES | `'create_link'`
 bundle.offer | YES | selected offer ID for link
 bundle.user_id | NO | user ID who wants to create a link
 bundle.campaign_id | NO | link must be created for campaign
+
+**MRGL related parameters**
+bundle.mrgl.recipients_count | YES | max recipients count
+bundle.mrgl.ttl | YES | accept timeout in minutes
 
 <aside class="notice">
 Please notice that this request doesn't require a <b>console_id</b> attribute. That's why response is pushed directly to <b>responses path</b>/<b>request's wait_for_response_at</b>.
@@ -81,7 +101,8 @@ links: {
 		limit: 1,
 		offer_id: 'ollia_offer_tea',
 		user: '+111222333444',
-		vendor: 'ollia'
+		vendor: 'ollia',
+		timestamp: 1512506174707
 	}
 }
 ```
